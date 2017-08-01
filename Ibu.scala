@@ -1,9 +1,7 @@
 case class HopAddition(alphaAcid: Double, ounces: Double, boilMinutes: Double)
 case class Recipe(hopAdditions: List[HopAddition])
 
-
-
-object Main {
+object Calculations {
   val gallons = 5
 
   def hopUtilization(hopAddition: HopAddition): Double = {
@@ -26,6 +24,9 @@ object Main {
     result
   }
 
+}
+
+object Main {
   def main(args: Array[String]) {
     val hopAdditions = List(
       HopAddition(7.0, 1, 60),
@@ -33,7 +34,7 @@ object Main {
       HopAddition(7.0, 1, 0)
     )
     val sierraNevadaPaleAle = Recipe(hopAdditions)
-    val snIbus = ibus(sierraNevadaPaleAle)
+    val snIbus = Calculations.ibus(sierraNevadaPaleAle)
 
     println(f"IBUs: $snIbus%3.2f")
   }
