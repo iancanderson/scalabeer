@@ -29,9 +29,9 @@ object Calculations {
 object Main {
   def main(args: Array[String]) {
     val hopAdditions = List(
-      HopAddition(7.0, 1, 60),
-      HopAddition(7.0, 1, 20),
-      HopAddition(7.0, 1, 0)
+      HopAddition(alphaAcid=7.0, ounces=1, boilMinutes=60),
+      HopAddition(alphaAcid=7.0, ounces=1, boilMinutes=20),
+      HopAddition(alphaAcid=7.0, ounces=1, boilMinutes=0),
     )
     val sierraNevadaPaleAle = Recipe(hopAdditions)
     val snIbus = Calculations.ibus(sierraNevadaPaleAle)
