@@ -4,7 +4,11 @@ case class Recipe(hopAdditions: List[HopAddition])
 object Calculations {
   val gallons = 5
 
-  def hopUtilization(hopAddition: HopAddition): Double = {
+  def ibus(recipe: Recipe): Double = {
+    recipe.hopAdditions.map(ibus).sum
+  }
+
+  private def hopUtilization(hopAddition: HopAddition): Double = {
     val boilGravity = 1.05
     val gravityFactor = 1.65 * Math.pow(0.000125, (boilGravity - 1))
     val timeFactor = (1 - Math.pow(Math.E, -0.04 * hopAddition.boilMinutes)) / 4.15
@@ -12,18 +16,12 @@ object Calculations {
     result
   }
 
-  def ibus(hopAddition: HopAddition): Double = {
+  private def ibus(hopAddition: HopAddition): Double = {
     val alphaAcidUnits = hopAddition.alphaAcid * hopAddition.ounces
     val utilization = hopUtilization(hopAddition)
     val result = alphaAcidUnits * utilization * 75 / gallons
     result
   }
-
-  def ibus(recipe: Recipe): Double = {
-    val result = recipe.hopAdditions.map(ibus).sum
-    result
-  }
-
 }
 
 object Main {
