@@ -1,11 +1,28 @@
 case class HopAddition(alphaAcid: Double, ounces: Double, boilMinutes: Double)
-case class Recipe(hopAdditions: List[HopAddition])
+
+object VolumeUnit extends Enumeration {
+  type VolumeUnit = Value
+  val Gallon, Liter = Value
+}
+
+import VolumeUnit._
+
+case class Volume(amount: Double, unit: VolumeUnit) {
+  def inGallons(): Double = {
+    unit match {
+      case Gallon => amount
+    }
+  }
+}
+
+case class Recipe(
+  batchVolume: Volume,
+  hopAdditions: List[HopAddition]
+)
 
 object Calculations {
-  val gallons = 5
-
   def ibus(recipe: Recipe): Double = {
-    recipe.hopAdditions.map(ibus).sum
+    recipe.hopAdditions.map(ibus(recipe.batchVolume, _)).sum
   }
 
   private def hopUtilization(hopAddition: HopAddition): Double = {
@@ -16,11 +33,10 @@ object Calculations {
     result
   }
 
-  private def ibus(hopAddition: HopAddition): Double = {
+  private def ibus(batchVolume: Volume, hopAddition: HopAddition): Double = {
     val alphaAcidUnits = hopAddition.alphaAcid * hopAddition.ounces
     val utilization = hopUtilization(hopAddition)
-    val result = alphaAcidUnits * utilization * 75 / gallons
-    result
+    alphaAcidUnits * utilization * 75 / batchVolume.inGallons()
   }
 }
 
@@ -31,7 +47,10 @@ object Main {
       HopAddition(alphaAcid=7.0, ounces=1, boilMinutes=20),
       HopAddition(alphaAcid=7.0, ounces=1, boilMinutes=0),
     )
-    val sierraNevadaPaleAle = Recipe(hopAdditions)
+    val sierraNevadaPaleAle = Recipe(
+      batchVolume=Volume(5, Gallon),
+      hopAdditions=hopAdditions
+    )
     val snIbus = Calculations.ibus(sierraNevadaPaleAle)
 
     println(f"IBUs: $snIbus%3.2f")
