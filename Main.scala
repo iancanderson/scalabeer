@@ -3,9 +3,8 @@ object Main {
     val sierraNevadaPaleAle = Recipe(
       batchVolume = Volume(5.5, Gallon),
       hopAdditions = List(
-        HopAddition(alphaAcid = 7.0, ounces = 1, boilMinutes = 60),
-        HopAddition(alphaAcid = 7.0, ounces = 1, boilMinutes = 20),
-        HopAddition(alphaAcid = 7.0, ounces = 1, boilMinutes = 0),
+        HopAddition(alphaAcid = 14, ounces = 0.6, boilMinutes = 60),
+        HopAddition(alphaAcid = 5.5, ounces = 0.25, boilMinutes = 60),
       ),
       grainAdditions = List(
         GrainAddition(potential = 1.036, weight = Weight(10, Pound)),
