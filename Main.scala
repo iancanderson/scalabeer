@@ -15,11 +15,14 @@ object Main {
       brewhouseEfficiency = 0.73,
       boilOffRate = VolumePerTime(Volume(0.66, Gallon), Hour),
       boilDuration = Time(1, Hour),
+      yeast = Yeast(attenuation = 0.73),
     )
     val snIbus = IbuCalculator.ibusTinseth(sierraNevadaPaleAle)
-    val originalGravity = OriginalGravityCalculator.originalGravity(sierraNevadaPaleAle)
+    val originalGravity = sierraNevadaPaleAle.originalGravity
+    val finalGravity = sierraNevadaPaleAle.finalGravity
 
     println(f"IBUs: $snIbus%3.2f")
     println(f"Original Gravity: $originalGravity%3.3f")
+    println(f"Final Gravity: $finalGravity%3.3f")
   }
 }
