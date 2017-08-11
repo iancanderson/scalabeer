@@ -1,4 +1,4 @@
-object Calculations {
+object IbuCalculator {
   def ibusTinseth(recipe: Recipe): Double = {
     recipe.hopAdditions.map(
       ibusTinseth(recipe.boilGravity, recipe.batchVolume, _)
@@ -8,7 +8,7 @@ object Calculations {
   private def ibusTinseth(boilGravity: Double, batchVolume: Volume, hopAddition: HopAddition): Double = {
     val alphaAcidUnits = hopAddition.alphaAcid * hopAddition.ounces
     val utilization = hopUtilizationTinseth(boilGravity, hopAddition)
-    alphaAcidUnits * utilization * 75 / batchVolume.inGallons()
+    alphaAcidUnits * utilization * 75 / batchVolume.inGallons
   }
 
   private def hopUtilizationTinseth(boilGravity: Double, hopAddition: HopAddition): Double = {
