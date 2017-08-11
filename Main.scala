@@ -13,8 +13,9 @@ object Main {
         GrainAddition(potential = 1.034, weight = Weight(0.5, Pound)),
         GrainAddition(potential = 1.036, weight = Weight(0.5, Pound)),
       ),
-      boilGravity = 1.050,
       brewhouseEfficiency = 0.73,
+      boilOffRate = VolumePerTime(Volume(0.66, Gallon), Hour),
+      boilDuration = Time(1, Hour),
     )
     val snIbus = IbuCalculator.ibusTinseth(sierraNevadaPaleAle)
     val originalGravity = OriginalGravityCalculator.originalGravity(sierraNevadaPaleAle)
