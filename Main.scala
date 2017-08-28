@@ -17,7 +17,7 @@ object Main {
       boilDuration = Time(1, Hour),
       yeast = Yeast(attenuation = 0.73),
     )
-    val snIbus = IbuCalculator.ibusTinseth(sierraNevadaPaleAle)
+    val snIbus = sierraNevadaPaleAle.ibu
     val originalGravity = sierraNevadaPaleAle.originalGravity
     val finalGravity = sierraNevadaPaleAle.finalGravity
     val abv = sierraNevadaPaleAle.abv

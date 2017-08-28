@@ -27,5 +27,8 @@ case class Recipe(
     (76.08 * (originalGravity.amount - finalGravity.amount) /
       (1.775 - originalGravity.amount)) * (finalGravity.amount / 0.794)
   }
+  def ibu: Double = {
+    IbuCalculator.ibusTinseth(this)
+  }
 }
 
