@@ -20,9 +20,11 @@ object Main {
     val snIbus = IbuCalculator.ibusTinseth(sierraNevadaPaleAle)
     val originalGravity = sierraNevadaPaleAle.originalGravity
     val finalGravity = sierraNevadaPaleAle.finalGravity
+    val abv = sierraNevadaPaleAle.abv
 
     println(f"IBUs: $snIbus%3.2f")
-    println(f"Original Gravity: ${originalGravity.amount}%3.3f")
-    println(f"Final Gravity: ${finalGravity.amount}%3.3f")
+    println(f"Original Gravity: ${originalGravity.amount}%1.3f")
+    println(f"Final Gravity: ${finalGravity.amount}%1.3f")
+    println(f"ABV: ${abv}%3.2f%%")
   }
 }

@@ -23,5 +23,9 @@ case class Recipe(
   def preBoilVolume: Volume = {
     boilOffRate * boilDuration + batchVolume
   }
+  def abv: Double = {
+    (76.08 * (originalGravity.amount - finalGravity.amount) /
+      (1.775 - originalGravity.amount)) * (finalGravity.amount / 0.794)
+  }
 }
 
