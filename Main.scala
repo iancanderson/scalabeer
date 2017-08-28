@@ -22,7 +22,7 @@ object Main {
     val finalGravity = sierraNevadaPaleAle.finalGravity
 
     println(f"IBUs: $snIbus%3.2f")
-    println(f"Original Gravity: $originalGravity%3.3f")
-    println(f"Final Gravity: $finalGravity%3.3f")
+    println(f"Original Gravity: ${originalGravity.amount}%3.3f")
+    println(f"Final Gravity: ${finalGravity.amount}%3.3f")
   }
 }

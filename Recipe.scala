@@ -14,12 +14,11 @@ case class Recipe(
   yeast: Yeast,
 ) {
 
-  val originalGravityPoints = (originalGravity - 1) * 1000
-  val preBoilGravityPoints = originalGravityPoints * (batchVolume / preBoilVolume)
-  val preBoilGravity = preBoilGravityPoints / 1000 + 1
-  val averageBoilGravity = (preBoilGravity + originalGravity) / 2
+  val preBoilGravityPoints = originalGravity.points * (batchVolume / preBoilVolume)
+  val preBoilGravity = preBoilGravityPoints.gravity
+  val averageBoilGravity = preBoilGravity.average(originalGravity)
 
-  def finalGravity = 1 + (((originalGravity - 1) * 1000) * (1 - yeast.attenuation)) / 1000
+  def finalGravity = (originalGravity.points * (1 - yeast.attenuation)).gravity
   def originalGravity = OriginalGravityCalculator.originalGravity(this)
   def preBoilVolume: Volume = {
     boilOffRate * boilDuration + batchVolume

@@ -50,6 +50,18 @@ case class Time(amount: Double, unit: TimeUnit) {
   }
 }
 
+case class Gravity(amount: Double) {
+  def points: GravityPoints = GravityPoints((amount - 1) * 1000)
+
+  def average(that: Gravity) = Gravity((this.amount + that.amount) / 2)
+}
+
+case class GravityPoints(points: Double) {
+  def gravity: Gravity= Gravity(points / 1000 + 1)
+
+  def *(amount: Double) = GravityPoints(this.points * amount)
+}
+
 case class VolumePerTime(volume: Volume, timeUnit: TimeUnit) {
   def *(time: Time): Volume = timeUnit match {
     case Minute => Volume(volume.amount * time.inMinutes, volume.unit)
