@@ -50,16 +50,16 @@ case class Time(amount: Double, unit: TimeUnit) {
   }
 }
 
-case class Gravity(amount: Double) {
-  def points: GravityPoints = GravityPoints((amount - 1) * 1000)
+class Gravity(val amount: Double) extends AnyVal {
+  def points: GravityPoints = new GravityPoints((amount - 1) * 1000)
 
-  def average(that: Gravity) = Gravity((this.amount + that.amount) / 2)
+  def average(that: Gravity) = new Gravity((this.amount + that.amount) / 2)
 }
 
-case class GravityPoints(points: Double) {
-  def gravity: Gravity= Gravity(points / 1000 + 1)
+class GravityPoints(val points: Double) extends AnyVal {
+  def gravity: Gravity= new Gravity(points / 1000 + 1)
 
-  def *(amount: Double) = GravityPoints(this.points * amount)
+  def *(amount: Double) = new GravityPoints(this.points * amount)
 }
 
 case class VolumePerTime(volume: Volume, timeUnit: TimeUnit) {
